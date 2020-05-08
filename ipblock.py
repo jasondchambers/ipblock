@@ -36,7 +36,7 @@ class IpBlocker:
             'destCidr': dest_cidr,
             'destPort': 'Any', 
             'policy': 'deny', 
-            'protocol': 'tcp', 
+            'protocol': 'any', 
             'srcCidr': self.src_cidr,
             'srcPort': 'Any', 
             'syslogEnabled': 'false' 
