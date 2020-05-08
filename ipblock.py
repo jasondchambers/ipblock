@@ -39,7 +39,7 @@ class IpBlocker:
             'protocol': 'any', 
             'srcCidr': self.src_cidr,
             'srcPort': 'Any', 
-            'syslogEnabled': 'false' 
+            'syslogEnabled': 'true' 
         }
         self.add_rule(new_rule)
 
