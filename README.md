@@ -23,6 +23,7 @@ Now, we can run the unit tests as follows:
 
 ```
 ./unittest.sh
+```
 
 # How to build and run
 
