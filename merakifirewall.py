@@ -1,34 +1,40 @@
-import meraki
+import merakiapiwrapper
 import json
+from firewall import Firewall
 
-class IpBlocker:
+class MerakiFirewall(Firewall):
 
-    def __init__(self, api_key, network_id, src_cidr):
-        self.api_key = api_key
-        self.network_id = network_id
+    def __init__(self, src_cidr, meraki_api_wrapper):
         self.src_cidr = src_cidr
-        self.dashboard = meraki.DashboardAPI( 
-            api_key=api_key, 
-            base_url='https://api-mp.meraki.com/api/v0/',
-            output_log=False) 
-            
+        self.meraki_api_wrapper = meraki_api_wrapper
+
+    def get_rules(self):
+        return self.meraki_api_wrapper.get_rules()
+
+    def update_rules(self,rules):
+        self.meraki_api_wrapper.update_rules(rules)
+
     def strip_default_rule_from(self,rules): 
         return list(filter(lambda rule: rule['comment'] != 'Default rule', rules))
 
     def find(self,new_rule,rules): 
         return list(filter(lambda existing_rule: existing_rule['destCidr'] == new_rule['destCidr'], rules))
 
+    def rule_already_exists(self):
+        return
+
+    def add_new_rule(self,rules,new_rule):
+        rules.append(new_rule) 
+        self.update_rules(rules)
+
     def add_rule(self,new_rule): 
-        mx_l3_firewall = self.dashboard.mx_l3_firewall
-        rules = mx_l3_firewall.getNetworkL3FirewallRules(self.network_id) 
+        rules = self.get_rules()
         rules = self.strip_default_rule_from(rules)
         rule_already_exists = self.find(new_rule,rules)
         if not rule_already_exists: 
-            print ('Adding new rule') 
-            rules.append(new_rule) 
-            response = mx_l3_firewall.updateNetworkL3FirewallRules(self.network_id,rules=rules) 
+            self.add_new_rule(rules,new_rule)
         else: 
-            print('Rule already exists')
+            self.rule_already_exists()
 
     def block_cidr(self,dest_cidr, comment): 
         new_rule = { 
