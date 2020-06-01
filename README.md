@@ -6,7 +6,25 @@ the user to instruct the Meraki MX firewall to block an outside IP address from 
 
 Underneath the covers, it uses the [Meraki API](https://github.com/meraki/dashboard-api-python).
 
-# How to build
+# Structure
+
+The code is the best source of truth. However, here is a UML model that illustrates at a high-level how the code is structured.
+
+![image info](ipblock_class_diagram.png)
+
+# How to run unit tests
+
+Deployment is based on Docker and containerization - however, development and unit testing is not. For development, we use Python's Virtual Environment feature. You can set this up by running this script:
+```
+./createvenv.sh
+```
+
+Now, we can run the unit tests as follows:
+
+```
+./unittest.sh
+
+# How to build and run
 
 You will need to modify the Dockerfile and put in your details:
 ```
