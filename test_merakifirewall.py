@@ -38,6 +38,15 @@ class MerakiFirewallTestCase(unittest.TestCase):
         firewall.block_dest_ip(ipaddress, 'Testing')
         mock_rule_already_exists.assert_called_with()
 
+    @patch('merakifirewall.MerakiFirewall.invalid_input')
+    def test_block_invalid_ip(self,mock_invalid_input):
+        src_cidr = '192.168.128.0/24' 
+        invalid_ipaddress = '5jsdk4.2djffdj22.6fjdjf0.220' 
+        meraki_api_wrapper = MagicMock()
+        firewall = MerakiFirewall(src_cidr,meraki_api_wrapper)
+        firewall.block_dest_ip(invalid_ipaddress, 'Testing')
+        assert mock_invalid_input.called
+
     @patch('merakifirewall.MerakiFirewall.add_new_rule')
     @patch('merakifirewall.MerakiFirewall.update_rules')
     @patch('merakifirewall.MerakiFirewall.get_rules')

@@ -1,4 +1,5 @@
 import merakiapiwrapper
+import ipaddress
 import json
 from firewall import Firewall
 
@@ -47,8 +48,22 @@ class MerakiFirewall(Firewall):
             'srcPort': 'Any', 
             'syslogEnabled': 'true' 
         }
-        self.add_rule(new_rule)
+        self.add_rule(new_rule) 
+        
+    def invalid_input(self):
+        return
+
+    def is_valid_ip_address(self,ip):
+        try: 
+            ipaddress.ip_address(ip) 
+            return True
+        except(ValueError):
+            return False
 
     def block_dest_ip(self,dest_ip, comment):
-        self.block_cidr(dest_ip+'/32', comment)
+        if self.is_valid_ip_address(dest_ip): 
+            self.block_cidr(dest_ip+'/32', comment)
+        else:
+            self.invalid_input()
+
 
