@@ -1,7 +1,11 @@
+"""
+The Firewall base-class captures the essential behaviors of all Firewalls in
+this particular context.
+"""
+from abc import ABC
 
-from abc import ABC, abstractmethod
-
-# Firewall abstraction 
 class Firewall(ABC):
-    def block_dest_ip(self,dest_ip,comment):
+    """Base Firewall class designed for all possible firewall implementations."""
+    def block_dest_ip(self, dest_ip, comment):
+        """ddd"""
         pass
