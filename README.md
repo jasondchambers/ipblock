@@ -31,7 +31,7 @@ To deploy this capability into production, it is strongly recommended to add an 
 server/network environment that is highly restricted.
 
 ## Installation
-Installation involves configuration, build and test followed by configuration of the External Lookup feature
+Installation involves configuration, build and run followed by configuration of the External Lookup feature
 within Cisco Stealthwatch Enterprise.
 
 To get started with the installation, simply clone this project (assuming Git is installed) then move on to the 
