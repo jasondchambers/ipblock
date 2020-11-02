@@ -4,7 +4,7 @@ This component, when integrated through the ["External Lookup"](https://www.cisc
 the user to instruct the Meraki MX firewall to block an outside IP address directly from within Cisco Stealthwatch.
 
 It provides value by improving threat response time as it allows the user to quickly block suspicious IP addresses 
-from withing the Cisco Stealthwatch UI without having to log-in and navigate through the Meraki Dashboard UI. 
+from within the Cisco Stealthwatch UI without having to log-in and navigate through the Meraki Dashboard UI. 
 
 It is applicable for anyone who is using a combination of Cisco Stealthwatch Enterprise AND Meraki MX. It may also 
 be useful serving as an example of usage of the [Meraki Dashboard API Python Library](https://github.com/meraki/dashboard-api-python).
