@@ -1,16 +1,10 @@
-<<<<<<< HEAD
 # ipblock
-=======
-# Background
-
-Developed as a proof of concept of an integration between Cisco Stealthwatch Enterprise and Meraki MX. 
->>>>>>> 5a287ddc7894e7771c1da51b752bdd29602f5214
 
 This component, when integrated through the ["External Lookup"](https://www.cisco.com/c/dam/en/us/td/docs/security/stealthwatch/management_console/external_lookup/SW_7_3_External_Lookup_DV_1_0.pdf?cachemode=refresh) feature of [Cisco Stealthwatch Enterprise](https://www.cisco.com/c/en/us/products/security/stealthwatch/index.html) enables
 the user to instruct the Meraki MX firewall to block an outside IP address directly from within Cisco Stealthwatch.
 
 It provides value by improving threat response time as it allows the user to quickly block suspicious IP addresses 
-from withing the Cisco Stealthwatch UI without having to log-in and navigate through the Meraki Dashboard UI. 
+from within the Cisco Stealthwatch UI without having to log-in and navigate through the Meraki Dashboard UI. 
 
 It is applicable for anyone who is using a combination of Cisco Stealthwatch Enterprise AND Meraki MX. It may also 
 be useful serving as an example of usage of the [Meraki Dashboard API Python Library](https://github.com/meraki/dashboard-api-python).
@@ -37,7 +31,7 @@ To deploy this capability into production, it is strongly recommended to add an 
 server/network environment that is highly restricted.
 
 ## Installation
-Installation involves configuration, build and test followed by configuration of the External Lookup feature
+Installation involves configuration, build and run followed by configuration of the External Lookup feature
 within Cisco Stealthwatch Enterprise.
 
 To get started with the installation, simply clone this project (assuming Git is installed) then move on to the 
