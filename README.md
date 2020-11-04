@@ -1,13 +1,10 @@
 # ipblock
 
-This component, when integrated through the [External Lookup](https://www.cisco.com/c/dam/en/us/td/docs/security/stealthwatch/management_console/external_lookup/SW_7_3_External_Lookup_DV_1_0.pdf) feature of [Cisco Stealthwatch Enterprise](https://www.cisco.com/c/en/us/products/security/stealthwatch/index.html) enables
-the user to instruct the Meraki MX firewall to block an outside IP address directly from within Cisco Stealthwatch.
+This component, when integrated through the [External Lookup](https://www.cisco.com/c/dam/en/us/td/docs/security/stealthwatch/management_console/external_lookup/SW_7_3_External_Lookup_DV_1_0.pdf) feature of [Cisco Stealthwatch Enterprise](https://www.cisco.com/c/en/us/products/security/stealthwatch/index.html) enables the user to instruct the Meraki MX firewall to block an outside IP address directly from within Cisco Stealthwatch.
 
-It provides value by improving threat response time as it allows the user to quickly block suspicious IP addresses 
-from within the Cisco Stealthwatch UI without having to log-in and navigate through the Meraki Dashboard UI. 
+It provides value by improving threat response time as it allows the user to quickly block suspicious IP addresses from within the Cisco Stealthwatch UI without having to log-in and navigate through the Meraki Dashboard UI. 
 
-It is applicable for anyone who is using a combination of Cisco Stealthwatch Enterprise AND Meraki MX. It may also 
-be useful serving as an example of usage of the [Meraki Dashboard API Python Library](https://github.com/meraki/dashboard-api-python).
+It is applicable for anyone who is using a combination of Cisco Stealthwatch Enterprise AND Meraki MX. It may also be useful serving as an example of usage of the [Meraki Dashboard API Python Library](https://github.com/meraki/dashboard-api-python).
 
 This component is available for use by the Cisco DevNet community through Code Exchange.
 
@@ -19,23 +16,16 @@ This component is available for use by the Cisco DevNet community through Code E
 
 ## Security Warning
 
-This component is provided as a proof-of-concept. It is NOT RECOMMENDED to deploy this component as-is into a 
-production environment without considering security. This component provides a REST endpoint that makes it easy and 
-convenient to write firewall rules. This is a very powerful capability and therefore if not deployed thoughtfully with 
-adequate controls, it could increase exposure to risk. 
+This component is provided as a proof-of-concept. It is NOT RECOMMENDED to deploy this component as-is into a production environment without considering security. This component provides a REST endpoint that makes it easy and convenient to write firewall rules. This is a very powerful capability and therefore if not deployed thoughtfully with adequate controls, it could increase exposure to risk. 
 
-This is in contrast to typical applications of the "External Lookup" feature which are idempotent in nature and therefore 
-do not modify any state.
+This is in contrast to typical applications of the "External Lookup" feature which are idempotent in nature and therefore do not modify any state.
 
-To deploy this capability into production, it is strongly recommended to add an authentication layer and/or deploy it on a 
-server/network environment that is highly restricted.
+To deploy this capability into production, it is strongly recommended to add an authentication layer and/or deploy it on a server/network environment that is highly restricted.
 
 ## Installation
-Installation involves configuration, build and run followed by configuration of the External Lookup feature
-within Cisco Stealthwatch Enterprise.
+Installation involves configuration, build and run followed by configuration of the External Lookup feature within Cisco Stealthwatch Enterprise.
 
-To get started with the installation, simply clone this project (assuming Git is installed) then move on to the 
-"Configuration" step. 
+To get started with the installation, simply clone this project (assuming Git is installed) then move on to the "Configuration" step. 
 
 ## Configuration
 Modify the `Dockerfile` as guided (these pieces of information can be found logging into the Meraki Dashboard):
@@ -44,8 +34,7 @@ ENV api_key YOUR_MERAKI_API_KEY_GOES_HERE
 ENV network_id YOUR_MERAKI_NETWORK_ID_KEY_GOES_HERE
 ENV src_cidr YOUR_LOCAL_SRC_CIDR_GOES_HER
 ```
-Decide which port the service is to listen on - the default is 5002. Modify the run.sh script if there is a requirement
-to use a different port and map it to the container port of 5002.
+Decide which port the service is to listen on - the default is 5002. Modify the run.sh script if there is a requirement to use a different port and map it to the container port of 5002.
 
 Now continue to the "Build" step.
 
@@ -62,25 +51,20 @@ Once built, run the Docker container as follows:
 ## Cisco Stealthwatch Enterprise Configuration
 The next step is configure the External Lookup Feature in Cisco Stealthwatch Enterprise.
 
-Instructions for how to do this can be found in the [Cisco Stealthwatch documentation.](https://www.cisco.com/c/dam/en/us/td/docs/security/stealthwatch/management_console/external_lookup/SW_7_3_External_Lookup_DV_1_0.pdf?cachemode=refresh)
+Instructions for how to do this can be found in the [Cisco Stealthwatch documentation.](https://www.cisco.com/c/dam/en/us/td/docs/security/stealthwatch/management_console/external_lookup/SW_7_3_External_Lookup_DV_1_0.pdf?cachemode=refresh) 
 
-An example configuration is provided as follows. The masked/red portion of the base URL should be 
-replaced with the server the component is running. If during the Configuration step a port different to 
-the default of 5002 is used, be sure to change that in the base URL too.
+An example configuration is provided as follows. The masked/red portion of the base URL should be replaced with the server the component is running. If during the Configuration step a port different to the default of 5002 is used, be sure to change that in the base URL too.
 
 ![image info](doc_sw_external_lookup_configuration.png)
 
 ## Testing
 
-To test, log in to the Meraki Dashboard and inspect the current Layer 3 Outbound rules. By default, these 
-are most likely set to allow any outbound traffic.
+To test, log in to the Meraki Dashboard and inspect the current Layer 3 Outbound rules. By default, these are most likely set to allow any outbound traffic.
 
 For example:
 ![image info](doc_meraki_mx_firewall.png)
 
-From within Cisco Stealthwatch Enterprise, conduct a Flow Search. From the Flow Search Results, it 
-should now be possible to instruct the Meraki firewall to block an outside IP address as follows (for 
-your particular test, make sure you blocking an IP address that is not going to cause any disruption):
+From within Cisco Stealthwatch Enterprise, conduct a Flow Search. From the Flow Search Results, it should now be possible to instruct the Meraki firewall to block an outside IP address as follows (for your particular test, make sure you blocking an IP address that is not going to cause any disruption):
 ![image info](doc_sw_flow_search_results.png)
 
 This verifies the target IP address is now blocked.
@@ -102,13 +86,12 @@ The component can be tested quickly by pointing your browser to:
 ```
 http://<server>:5002/block/?ipaddress=<ipaddress to block>
 ```
-Then, if you log-in to the Meraki dashboard you should see that the L3 firewall
-rule has been written.
+Then, if you log-in to the Meraki dashboard you should see that the L3 firewall rule has been written.
 
 ## Developing
 This step is optional and is for those who wish to modify the code to suit their specific needs. Please review the "Getting Involved" section below"
 
-Deployment is based on Docker and containerization - however, development and unit testing is not. For development, we use Python's Virtual Environment feature. You can set this up by running this script:
+Deployment is based on Docker and containerization - however, development and unit testing is not. For development, we use Python's Virtual Environment feature. You can set this up by running this script: 
 ```
 ./createvenv.sh
 ```
