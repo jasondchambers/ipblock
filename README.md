@@ -6,7 +6,12 @@ It provides value by improving threat response time as it allows the user to qui
 
 It is applicable for anyone who is using a combination of Cisco Stealthwatch Enterprise AND Meraki MX. It may also be useful serving as an example of usage of the [Meraki Dashboard API Python Library](https://github.com/meraki/dashboard-api-python).
 
+The various integrated components are connected together as follows:
+
+![image info](doc_ipblock_topology.png)
+
 This component is available for use by the Cisco DevNet community through Code Exchange.
+
 
 ## Requirements
 1. Docker (this component is built and run as a Docker container)
