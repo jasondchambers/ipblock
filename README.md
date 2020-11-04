@@ -39,6 +39,8 @@ ENV api_key YOUR_MERAKI_API_KEY_GOES_HERE
 ENV network_id YOUR_MERAKI_NETWORK_ID_KEY_GOES_HERE
 ENV src_cidr YOUR_LOCAL_SRC_CIDR_GOES_HER
 ```
+> **Note:** To obtain your Meraki API key, please follow these steps: https://documentation.meraki.com/zGeneral_Administration/Other_Topics/The_Cisco_Meraki_Dashboard_API
+
 Decide which port the service is to listen on - the default is 5002. Modify the run.sh script if there is a requirement to use a different port and map it to the container port of 5002.
 
 Now continue to the "Build" step.
