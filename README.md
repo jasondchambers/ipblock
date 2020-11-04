@@ -1,6 +1,6 @@
 # ipblock
 
-This component, when integrated through the ["External Lookup"](https://www.cisco.com/c/dam/en/us/td/docs/security/stealthwatch/management_console/external_lookup/SW_7_3_External_Lookup_DV_1_0.pdf?cachemode=refresh) feature of [Cisco Stealthwatch Enterprise](https://www.cisco.com/c/en/us/products/security/stealthwatch/index.html) enables
+This component, when integrated through the [External Lookup](https://www.cisco.com/c/dam/en/us/td/docs/security/stealthwatch/management_console/external_lookup/SW_7_3_External_Lookup_DV_1_0.pdf) feature of [Cisco Stealthwatch Enterprise](https://www.cisco.com/c/en/us/products/security/stealthwatch/index.html) enables
 the user to instruct the Meraki MX firewall to block an outside IP address directly from within Cisco Stealthwatch.
 
 It provides value by improving threat response time as it allows the user to quickly block suspicious IP addresses 
