@@ -121,3 +121,5 @@ Please adhere to our [Code of Conduct](CODE_OF_CONDUCT.md) at all times
 
 ## Licensing info
 This code is licensed under the BSD 3-Clause License... see [LICENSE](LICENSE) for details
+
+[![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/yzxbmlf/ipblock)
