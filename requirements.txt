@@ -1,2 +1,2 @@
 flask
-meraki
+meraki==0.110.6
