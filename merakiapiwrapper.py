@@ -19,5 +19,4 @@ class MerakiApiWrapper():
 
     def update_rules(self, rules):
         """Upddate the rules in the firewall."""
-        mx_l3_firewall = self.dashboard.mx_l3_firewall
-        mx_l3_firewall.updateNetworkL3FirewallRules(self.network_id, rules=rules)
+        response = self.dashboard.appliance.updateNetworkApplianceFirewallL3FirewallRules(self.network_id,rules=rules['rules'])

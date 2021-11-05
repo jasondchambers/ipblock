@@ -22,7 +22,10 @@ class MerakiFirewall(Firewall):
     @staticmethod
     def strip_default_rule_from(rules):
         """Strip from the list of rules, the default rule"""
-        return list(filter(lambda rule: rule['comment'] != 'Default rule', rules))
+        rule_list = rules['rules']
+        stripped_rule_list = list(filter(lambda rule: rule['comment'] != 'Default rule', rule_list))
+        rules['rules'] = stripped_rule_list
+        return rules
 
     @staticmethod
     def find(new_rule, rules):
@@ -37,14 +40,14 @@ class MerakiFirewall(Firewall):
 
     def add_new_rule(self, rules, new_rule):
         """Add new_rule to the list of rules and update the firewall"""
-        rules.append(new_rule)
+        rules['rules'].append(new_rule)
         self.update_rules(rules)
 
     def add_rule(self, new_rule):
         """Add a rule to the firewall. The rule may already exist - that's okay"""
         rules = self.get_rules()
         rules = self.strip_default_rule_from(rules)
-        rule_already_exists = self.find(new_rule, rules)
+        rule_already_exists = self.find(new_rule, rules['rules'])
         if not rule_already_exists:
             self.add_new_rule(rules, new_rule)
         else:
