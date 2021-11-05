@@ -18,7 +18,7 @@ class MerakiFirewallTestCase(unittest.TestCase):
         ipaddress = '54.222.60.219'
         meraki_api_wrapper = MagicMock()
         firewall = MerakiFirewall(src_cidr, meraki_api_wrapper)
-        mock_get_rules.return_value = [
+        mock_get_rules.return_value = {'rules': [
             {
                 'comment': 'Unit Testing',
                 'policy': 'deny',
@@ -39,7 +39,7 @@ class MerakiFirewallTestCase(unittest.TestCase):
                 'destCidr': 'Any',
                 'syslogEnabled': False
             }
-        ]
+        ]}
         firewall.block_dest_ip(ipaddress, 'Testing')
         mock_rule_already_exists.assert_called_with()
 
@@ -72,7 +72,7 @@ class MerakiFirewallTestCase(unittest.TestCase):
             'destCidr': '54.222.60.219/32',
             'syslogEnabled': True
         }
-        mock_get_rules.return_value = [
+        mock_get_rules.return_value = {'rules': [
             existing_rule,
             {
                 'comment': 'Default rule',
@@ -84,16 +84,16 @@ class MerakiFirewallTestCase(unittest.TestCase):
                 'destCidr': 'Any',
                 'syslogEnabled': False
             }
-        ]
+        ]}
         firewall.block_dest_ip(ipaddress, 'Testing')
-        expected_new_rule = {
-            'comment': 'Testing',
-            'destCidr': '54.222.60.220/32',
-            'destPort': 'Any',
-            'policy': 'deny',
-            'protocol': 'any',
-            'srcCidr': '192.168.128.0/24',
-            'srcPort': 'Any',
+        expected_new_rule = { 
+            'comment': 'Testing', 
+            'destCidr': '54.222.60.220/32', 
+            'destPort': 'Any', 
+            'policy': 'deny', 
+            'protocol': 'any', 
+            'srcCidr': '192.168.128.0/24', 
+            'srcPort': 'Any', 
             'syslogEnabled': 'true'
         }
-        mock_add_new_rule.assert_called_with([existing_rule], expected_new_rule)
+        mock_add_new_rule.assert_called_with({'rules': [existing_rule]}, expected_new_rule)
