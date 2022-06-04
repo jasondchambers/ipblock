@@ -63,7 +63,7 @@ class MerakiFirewall(Firewall):
             'protocol': 'any',
             'srcCidr': self.src_cidr,
             'srcPort': 'Any',
-            'syslogEnabled': 'true'
+            'syslogEnabled': 'false'
         }
         self.add_rule(new_rule)
 
